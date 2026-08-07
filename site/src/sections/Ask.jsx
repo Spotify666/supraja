@@ -76,9 +76,17 @@ export function Closing() {
         </Reveal>
       </div>
       <footer className="relative border-t border-pine-800">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12 py-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-mist-300 tracking-wide">
-          <span>{meta.footerLine}</span>
-          <span>{meta.dateline}</span>
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
+          <span className="inline-grid place-items-center rounded-lg bg-paper px-4 py-3 shadow-sm">
+            <img
+              src={`${import.meta.env.BASE_URL}logo-full.webp`}
+              alt="Supraja Hospitals — A Unit of Dhanturi Hospitals Pvt. Ltd."
+              className="h-11 sm:h-12 w-auto block"
+              width="260"
+              height="107"
+            />
+          </span>
+          <span className="text-xs text-mist-300 tracking-wide text-center sm:text-right">{meta.dateline}</span>
         </div>
       </footer>
     </section>

@@ -59,15 +59,21 @@ export default function Nav({ sections, onVaultHint }) {
           type="button"
           onDoubleClick={onVaultHint}
           onKeyDown={logoKey}
-          className="focus-ring flex items-center gap-2.5 text-left select-none cursor-default"
+          className="focus-ring flex items-center gap-2.5 sm:gap-3 text-left select-none cursor-default"
           aria-label="Supraja Hospitals — a Dhanturi Group enterprise"
           title="Supraja Hospitals"
         >
-          <span className="grid place-items-center w-8 h-8 rounded-lg bg-gold text-pine-950 font-display font-bold text-lg leading-none">
-            S
+          {/* Official logo sits on a white chip so its maroon/teal reads crisply on the dark header */}
+          <span className="grid place-items-center rounded-md bg-paper px-2 py-1 sm:px-2.5 sm:py-1.5 shadow-sm">
+            <img
+              src={`${import.meta.env.BASE_URL}logo-lockup.webp`}
+              alt="Supraja Hospitals"
+              className="h-5 sm:h-6 w-auto block"
+              width="220"
+              height="60"
+            />
           </span>
-          <span className="leading-tight">
-            <span className="block text-paper font-semibold text-[13px] tracking-[0.08em]">SUPRAJA HOSPITALS</span>
+          <span className="hidden md:block leading-tight border-l border-pine-800 pl-3">
             <span className="block text-mist-300 text-[10px] tracking-[0.14em]">A DHANTURI GROUP ENTERPRISE</span>
           </span>
         </button>
