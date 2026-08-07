@@ -273,7 +273,8 @@ export function Compounding() {
             { key: 'revenue', label: d.labels.revenue },
             { key: 'ebitda', label: d.labels.ebitda },
           ]}
-          height={320}
+          height={360}
+          yLabel="₹ Crore"
         />
       </Reveal>
     </Section>

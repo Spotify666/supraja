@@ -92,6 +92,9 @@ export function CountUp({ value, className }) {
         if (useCommas) s = Number(s).toLocaleString('en-IN', { minimumFractionDigits: decimals })
         setDisplay(match[1] + s + match[3])
       },
+      // Snap to the exact verbatim source string so the final number is never
+      // an animation-rounded approximation (e.g. 28.9 instead of 29.0).
+      onComplete: () => setDisplay(value),
     })
     return () => controls.stop()
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -105,7 +105,8 @@ export default function Model() {
               { key: 'revenue', label: 'Revenue (₹ Cr)' },
               { key: 'ebitda', label: 'EBITDA (₹ Cr)' },
             ]}
-            height={260}
+            height={340}
+            yLabel="₹ Crore"
           />
           <div className="mt-6 overflow-x-auto rounded-2xl border border-line">
             <table className="w-full text-sm border-collapse min-w-[520px]">

@@ -110,65 +110,157 @@ export function Donut({ data, valueKey = 'value', labelKey = 'label', size = 300
   )
 }
 
-// Grouped/paired columns (e.g. Revenue vs EBITDA by year). Values may be negative.
-export function Columns({ data, series, height = 300, unit = '' }) {
+// "Nice" round numbers for axis ticks.
+function niceNum(range, round) {
+  const exp = Math.floor(Math.log10(range))
+  const frac = range / 10 ** exp
+  let nf
+  if (round) nf = frac < 1.5 ? 1 : frac < 3 ? 2 : frac < 7 ? 5 : 10
+  else nf = frac <= 1 ? 1 : frac <= 2 ? 2 : frac <= 5 ? 5 : 10
+  return nf * 10 ** exp
+}
+
+function niceScale(dataMin, dataMax, targetSteps = 6) {
+  const min = Math.min(0, dataMin)
+  const max = Math.max(0, dataMax)
+  const step = niceNum((max - min) / targetSteps || 1, true)
+  const niceMin = Math.floor(min / step) * step
+  const niceMax = Math.ceil(max / step) * step
+  const ticks = []
+  for (let v = niceMin; v <= niceMax + step / 2; v += step) ticks.push(Math.round(v / step) * step)
+  return { niceMin, niceMax, ticks }
+}
+
+const BAR_COLORS = ['var(--pine-800)', 'var(--gold)', 'var(--pine-600)']
+const LABEL_COLORS = ['var(--pine-800)', 'var(--gold-ink)', 'var(--pine-700)']
+
+// Grouped column chart with a real Y axis, gridlines, a zero baseline, and
+// value labels placed cleanly above (or below, for negatives) each bar.
+// Values may be negative. Rendered as SVG so nothing overlaps.
+export function Columns({ data, series, height = 320, unit = '', yLabel }) {
   const [ref, drawn] = useDrawn()
   const { lite } = useLite()
+
+  const W = 780
+  const H = height
+  const ML = yLabel ? 58 : 46
+  const MR = 14
+  const MT = 26
+  const MB = 40
+  const plotW = W - ML - MR
+  const plotH = H - MT - MB
+
   const all = data.flatMap((d) => series.map((s) => d[s.key]))
-  const maxV = Math.max(...all, 0)
-  const minV = Math.min(...all, 0)
-  const span = maxV - minV || 1
-  const plotH = height - 58
-  const zeroY = 10 + (maxV / span) * plotH
+  const { niceMin, niceMax, ticks } = niceScale(Math.min(...all), Math.max(...all))
+  const spanV = niceMax - niceMin || 1
+  const y = (v) => MT + ((niceMax - v) / spanV) * plotH
+  const zeroY = y(0)
+
+  const groupW = plotW / data.length
+  const innerW = groupW * 0.62
+  const barGap = series.length > 1 ? 6 : 0
+  const barW = (innerW - barGap * (series.length - 1)) / series.length
+  const fmt = (v) => `${v}${unit}`
 
   return (
     <div ref={ref}>
-      <div className="flex items-end justify-around gap-2" style={{ height }}>
-        {data.map((d) => (
-          <div key={d.label} className="flex flex-col items-center flex-1 min-w-0 h-full relative">
-            <div className="absolute left-0 right-0 border-t border-line" style={{ top: zeroY }} aria-hidden="true" />
-            <div className="flex items-end justify-center gap-2 sm:gap-3 w-full absolute" style={{ top: 0, height: plotH + 10 }}>
+      <svg
+        viewBox={`0 0 ${W} ${H}`}
+        width="100%"
+        className="h-auto block overflow-visible"
+        role="img"
+        aria-label={data
+          .map((d) => `${d.label}: ${series.map((s) => `${s.label} ${fmt(d[s.key])}`).join(', ')}`)
+          .join('; ')}
+      >
+        {/* Gridlines + Y tick labels */}
+        {ticks.map((t) => (
+          <g key={t}>
+            <line
+              x1={ML}
+              x2={W - MR}
+              y1={y(t)}
+              y2={y(t)}
+              stroke={t === 0 ? 'var(--muted)' : 'var(--line)'}
+              strokeWidth={t === 0 ? 1.25 : 1}
+            />
+            <text x={ML - 8} y={y(t) + 4} textAnchor="end" fontSize="12" fill="var(--muted)" className="tabular-nums">
+              {t}
+            </text>
+          </g>
+        ))}
+
+        {yLabel && (
+          <text
+            transform={`translate(14 ${MT + plotH / 2}) rotate(-90)`}
+            textAnchor="middle"
+            fontSize="12"
+            fontWeight="600"
+            fill="var(--muted)"
+          >
+            {yLabel}
+          </text>
+        )}
+
+        {/* Bars + value labels + category labels */}
+        {data.map((d, di) => {
+          const gx = ML + di * groupW + (groupW - innerW) / 2
+          return (
+            <g key={d.label}>
               {series.map((s, si) => {
                 const v = d[s.key]
-                const h = (Math.abs(v) / span) * plotH
+                const bx = gx + si * (barW + barGap)
                 const isNeg = v < 0
+                const barTop = isNeg ? zeroY : y(v)
+                const barH = Math.abs(y(v) - zeroY)
+                const labelY = isNeg ? zeroY + barH + 15 : barTop - 8
                 return (
-                  <div key={s.key} className="relative flex flex-col items-center" style={{ height: '100%', justifyContent: 'flex-end' }}>
-                    <span
-                      className="absolute text-[11px] sm:text-xs font-semibold tabular-nums whitespace-nowrap"
-                      style={{
-                        bottom: isNeg ? 'auto' : `calc(100% - ${zeroY}px + ${h + 6}px)`,
-                        top: isNeg ? `${zeroY + h + 2}px` : 'auto',
-                        color: si === 0 ? 'var(--pine-800)' : 'var(--gold-ink)',
-                      }}
-                    >
-                      {v}{unit}
-                    </span>
-                    <motion.div
-                      className="w-7 sm:w-12 rounded-t-[4px]"
-                      style={{
-                        background: si === 0 ? 'var(--pine-800)' : 'var(--gold)',
-                        position: 'absolute',
-                        ...(isNeg
-                          ? { top: zeroY, borderRadius: '0 0 4px 4px' }
-                          : { bottom: `calc(100% - ${zeroY}px)` }),
-                      }}
-                      initial={lite ? { height: h } : { height: 0 }}
-                      animate={drawn ? { height: h } : {}}
-                      transition={{ duration: 0.8, delay: si * 0.12, ease: EASE_OUT }}
+                  <g key={s.key}>
+                    <motion.rect
+                      x={bx}
+                      width={barW}
+                      rx="3"
+                      fill={BAR_COLORS[si % BAR_COLORS.length]}
+                      initial={lite ? { y: barTop, height: barH } : { y: zeroY, height: 0 }}
+                      animate={drawn ? { y: barTop, height: barH } : {}}
+                      transition={{ duration: 0.8, delay: 0.1 + si * 0.12 + di * 0.04, ease: EASE_OUT }}
                     />
-                  </div>
+                    <motion.text
+                      x={bx + barW / 2}
+                      y={labelY}
+                      textAnchor="middle"
+                      fontSize="12.5"
+                      fontWeight="700"
+                      fill={LABEL_COLORS[si % LABEL_COLORS.length]}
+                      className="tabular-nums"
+                      initial={lite ? { opacity: 1 } : { opacity: 0 }}
+                      animate={drawn ? { opacity: 1 } : {}}
+                      transition={{ duration: 0.3, delay: 0.5 + si * 0.12 + di * 0.04 }}
+                    >
+                      {fmt(v)}
+                    </motion.text>
+                  </g>
                 )
               })}
-            </div>
-            <span className="absolute bottom-0 text-sm font-medium text-muted">{d.label}</span>
-          </div>
-        ))}
-      </div>
-      <div className="flex justify-center gap-6 mt-5 text-sm">
+              <text
+                x={ML + di * groupW + groupW / 2}
+                y={H - MB + 24}
+                textAnchor="middle"
+                fontSize="14"
+                fontWeight="600"
+                fill="var(--ink)"
+              >
+                {d.label}
+              </text>
+            </g>
+          )
+        })}
+      </svg>
+
+      <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 mt-4 text-sm">
         {series.map((s, si) => (
           <span key={s.key} className="flex items-center gap-2">
-            <span className="w-3 h-3 rounded-[3px]" style={{ background: si === 0 ? 'var(--pine-800)' : 'var(--gold)' }} />
+            <span className="w-3 h-3 rounded-[3px]" style={{ background: BAR_COLORS[si % BAR_COLORS.length] }} />
             <span className="text-muted">{s.label}</span>
           </span>
         ))}
