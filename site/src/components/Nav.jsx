@@ -1,0 +1,100 @@
+import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useSpring } from 'framer-motion'
+import { useLite } from '../lib/motion.jsx'
+
+// Sticky, quiet nav. The logo is also the discreet "break-glass" trigger:
+// double-click / double-tap, or focus it and press Enter twice, to reveal
+// the source-documents affordance.
+export default function Nav({ sections, onVaultHint }) {
+  const [active, setActive] = useState(sections[0]?.id)
+  const [solid, setSolid] = useState(false)
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 34, mass: 0.4 })
+  const lastEnter = useRef(0)
+  const { lite, setLite } = useLite()
+
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) if (e.isIntersecting) setActive(e.target.id)
+      },
+      { rootMargin: '-35% 0px -55% 0px' }
+    )
+    for (const s of sections) {
+      const el = document.getElementById(s.id)
+      if (el) obs.observe(el)
+    }
+    const onScroll = () => setSolid(window.scrollY > 24)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    onScroll()
+    return () => {
+      obs.disconnect()
+      window.removeEventListener('scroll', onScroll)
+    }
+  }, [sections])
+
+  function logoKey(e) {
+    if (e.key === 'Enter') {
+      const now = Date.now()
+      if (now - lastEnter.current < 600) onVaultHint()
+      lastEnter.current = now
+    }
+  }
+
+  return (
+    <header
+      className={`fixed top-0 inset-x-0 z-40 transition-colors duration-300 ${
+        solid ? 'bg-pine-950/90 backdrop-blur-md shadow-[0_1px_0_0_rgba(255,255,255,0.06)]' : 'bg-transparent'
+      }`}
+      style={{ paddingTop: 'env(safe-area-inset-top)' }}
+    >
+      <motion.div
+        className="absolute bottom-0 left-0 h-[2px] w-full origin-left bg-gold"
+        style={{ scaleX: progress }}
+        aria-hidden="true"
+      />
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 flex items-center justify-between h-14 sm:h-16">
+        <button
+          type="button"
+          onDoubleClick={onVaultHint}
+          onKeyDown={logoKey}
+          className="focus-ring flex items-center gap-2.5 text-left select-none cursor-default"
+          aria-label="Supraja Hospitals — a Dhanturi Group enterprise"
+          title="Supraja Hospitals"
+        >
+          <span className="grid place-items-center w-8 h-8 rounded-lg bg-gold text-pine-950 font-display font-bold text-lg leading-none">
+            S
+          </span>
+          <span className="leading-tight">
+            <span className="block text-paper font-semibold text-[13px] tracking-[0.08em]">SUPRAJA HOSPITALS</span>
+            <span className="block text-mist-300 text-[10px] tracking-[0.14em]">A DHANTURI GROUP ENTERPRISE</span>
+          </span>
+        </button>
+
+        <nav aria-label="Sections" className="hidden lg:flex items-center gap-1">
+          {sections.map((s) => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              className={`focus-ring px-3 py-1.5 rounded-md text-[13px] font-medium transition-colors duration-200 ${
+                active === s.id ? 'text-paper bg-pine-800' : 'text-mist-300 hover:text-paper'
+              }`}
+            >
+              {s.label}
+            </a>
+          ))}
+        </nav>
+
+        <button
+          type="button"
+          onClick={() => setLite(!lite)}
+          className="focus-ring text-[11px] font-medium tracking-wide text-mist-300 hover:text-paper transition-colors px-2.5 py-1.5 rounded-md"
+          aria-pressed={lite}
+          title="Lite mode: static frames instead of continuous animation"
+        >
+          Motion {lite ? 'off' : 'on'}
+        </button>
+      </div>
+    </header>
+  )
+}

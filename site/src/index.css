@@ -1,0 +1,111 @@
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/source-serif-4';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------
+   BRAND TOKENS — single source of truth.
+   Extracted verbatim from the Supraja board deck theme
+   (Supraja Medical Tourism Board Deck.pptx). Do not add colours.
+------------------------------------------------------------------- */
+:root {
+  /* Pine — the brand green family (deck primary) */
+  --pine-950: #0B3D39;
+  --pine-900: #0F4D46;
+  --pine-800: #0F5C52;
+  --pine-700: #1F6E63;
+  --pine-600: #1F8A73;
+
+  /* Mist — derived tints of the brand green (deck surfaces) */
+  --mist-300: #9FC9C0;
+  --mist-200: #CFE7E1;
+  --mist-100: #D9EDE8;
+
+  /* Gold — the accent (deck kicker / highlight) */
+  --gold: #C6A15B;
+  --gold-soft: #EFE3C8;
+  --gold-tint: #FBF3E7;
+  --gold-ink: #3D2F14;
+
+  /* Neutrals (deck text + surfaces) */
+  --ink: #1A1A1A;
+  --muted: #6B7280;
+  --line: #E1E7E5;
+  --surface: #F7F9F8;
+  --paper: #FFFFFF;
+
+  /* RGB channels of the same tokens — used only so Tailwind's alpha
+     modifiers (bg-pine-950/80 etc.) work. Values mirror the hexes above. */
+  --pine-950-rgb: 11 61 57;
+  --pine-900-rgb: 15 77 70;
+  --pine-800-rgb: 15 92 82;
+  --pine-700-rgb: 31 110 99;
+  --pine-600-rgb: 31 138 115;
+  --mist-300-rgb: 159 201 192;
+  --mist-200-rgb: 207 231 225;
+  --mist-100-rgb: 217 237 232;
+  --gold-rgb: 198 161 91;
+  --gold-soft-rgb: 239 227 200;
+  --gold-tint-rgb: 251 243 231;
+  --gold-ink-rgb: 61 47 20;
+  --ink-rgb: 26 26 26;
+  --muted-rgb: 107 114 128;
+  --line-rgb: 225 231 229;
+  --surface-rgb: 247 249 248;
+  --paper-rgb: 255 255 255;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  background: var(--surface);
+  color: var(--ink);
+  font-family: 'Inter Variable', Inter, system-ui, sans-serif;
+  font-feature-settings: 'cv11', 'ss01';
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
+}
+
+::selection {
+  background: var(--mist-200);
+  color: var(--pine-950);
+}
+
+/* Fluid type scale — legible from phone to LED wall */
+:root {
+  --step--1: clamp(0.78rem, 0.74rem + 0.2vw, 0.92rem);
+  --step-0: clamp(0.95rem, 0.9rem + 0.25vw, 1.125rem);
+  --step-1: clamp(1.15rem, 1.05rem + 0.5vw, 1.5rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.25rem);
+  --step-3: clamp(2rem, 1.6rem + 2vw, 3.5rem);
+  --step-4: clamp(2.6rem, 1.9rem + 3.4vw, 5.25rem);
+}
+
+.kicker {
+  font-size: var(--step--1);
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--pine-600);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Quiet scrollbar for the thumbnail rail */
+.rail::-webkit-scrollbar { height: 6px; width: 6px; }
+.rail::-webkit-scrollbar-thumb { background: var(--line); border-radius: 3px; }
+.rail { scrollbar-width: thin; scrollbar-color: var(--line) transparent; }
