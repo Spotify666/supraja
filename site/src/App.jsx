@@ -42,8 +42,8 @@ const NAV_SECTIONS = [
   { id: 'summary', label: 'Summary' },
   { id: 'industry', label: 'The Industry' },
   { id: 'plan', label: 'Our Plan' },
-  { id: 'uganda', label: 'Uganda' },
   { id: 'ecosystem', label: 'Ecosystem' },
+  { id: 'uganda', label: 'Uganda' },
   { id: 'model', label: 'The Model' },
   { id: 'ask', label: 'The Ask' },
 ]
@@ -83,6 +83,8 @@ export default function App() {
         <GoToMarket />
         <FiveRoles />
         <RisksKpis />
+        {/* Supraja + Dhanturi Hospitality (X-Factor) — doc section 3, placed before Uganda */}
+        <Ecosystem />
         {/* Part Three */}
         <PartThree />
         <UgandaMarket />
@@ -92,8 +94,6 @@ export default function App() {
         <LogisticsGlobe />
         <MarketProven />
         <OurAdvantage />
-        {/* The Dhanturi ecosystem — the natural hook inside the journey */}
-        <Ecosystem />
         <BusinessCase />
         <Compounding />
         <InstitutionalWorth />
