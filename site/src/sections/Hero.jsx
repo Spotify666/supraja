@@ -19,13 +19,10 @@ export default function Hero() {
       <div aria-hidden="true" className="absolute right-[-6rem] bottom-[-16rem] w-[30rem] h-[30rem] rounded-full bg-pine-800 opacity-40" />
 
       <div className="relative mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12 pt-32 sm:pt-40 pb-16 sm:pb-24 min-h-[92svh] flex flex-col justify-center">
-        <motion.p className="kicker text-gold" {...enter(0.05)}>
-          {hero.kicker}
-        </motion.p>
         <motion.h1
-          className="font-display font-bold mt-5 leading-[1.04] tracking-tight max-w-5xl"
+          className="font-display font-bold leading-[1.04] tracking-tight max-w-5xl"
           style={{ fontSize: 'var(--step-4)' }}
-          {...enter(0.15)}
+          {...enter(0.1)}
         >
           {hero.title}
         </motion.h1>

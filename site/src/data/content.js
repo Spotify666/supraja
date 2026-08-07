@@ -9,7 +9,7 @@ export const meta = {
   org: 'SUPRAJA HOSPITALS',
   group: 'DHANTURI GROUP',
   footerLine: 'SUPRAJA HOSPITALS · DHANTURI GROUP',
-  dateline: 'A Dhanturi Group Enterprise · Hyderabad, India · July 2026',
+  dateline: 'A Dhanturi Group Enterprise · Hyderabad, India · 2026',
 }
 
 export const hero = {

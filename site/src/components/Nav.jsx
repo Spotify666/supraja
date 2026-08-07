@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { useLite } from '../lib/motion.jsx'
+import Icon from './Icon.jsx'
 
 // Sticky, quiet nav. The logo is also the discreet "break-glass" trigger:
 // double-click / double-tap, or focus it and press Enter twice, to reveal
@@ -88,11 +89,14 @@ export default function Nav({ sections, onVaultHint }) {
         <button
           type="button"
           onClick={() => setLite(!lite)}
-          className="focus-ring text-[11px] font-medium tracking-wide text-mist-300 hover:text-paper transition-colors px-2.5 py-1.5 rounded-md"
-          aria-pressed={lite}
-          title="Lite mode: static frames instead of continuous animation"
+          className={`focus-ring grid place-items-center w-9 h-9 rounded-md transition-colors hover:bg-pine-800 ${
+            lite ? 'text-mist-300 hover:text-paper' : 'text-gold'
+          }`}
+          aria-pressed={!lite}
+          aria-label={lite ? 'Animations off — click to enable animations' : 'Animations on — click to reduce motion'}
+          title={lite ? 'Animations off' : 'Animations on'}
         >
-          Motion {lite ? 'off' : 'on'}
+          <Icon name={lite ? 'motionOff' : 'motion'} size={18} />
         </button>
       </div>
     </header>
