@@ -141,21 +141,10 @@ const paths = {
   ),
   chevronLeft: <path d="m15 18-6-6 6-6" />,
   chevronRight: <path d="m9 18 6-6-6-6" />,
-  // Sparkles = animation/motion is on
-  motion: (
-    <>
-      <path d="M12 3l1.7 4.8 4.8 1.7-4.8 1.7L12 16l-1.7-4.8L5.5 9.5l4.8-1.7z" />
-      <path d="M18.5 13.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />
-    </>
-  ),
-  // Sparkles with a slash = motion is off / reduced
-  motionOff: (
-    <>
-      <path d="M12 3l1.7 4.8 4.8 1.7-4.8 1.7L12 16l-1.7-4.8L5.5 9.5l4.8-1.7z" />
-      <path d="M18.5 13.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" />
-      <path d="M3 3l18 18" />
-    </>
-  ),
+  // Equalizer waveform = animation/motion is on
+  motion: <path d="M4 9v6M8 6v12M12 8.5v7M16 5v14M20 10v4" />,
+  // Flat line = motion is off / reduced
+  motionOff: <path d="M4 12h16" />,
 }
 
 export default function Icon({ name, size = 22, className, strokeWidth = 1.6 }) {
