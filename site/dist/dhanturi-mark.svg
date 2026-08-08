@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" fill="none">
+  <!-- Crown -->
+  <g fill="#C6A15B">
+    <circle cx="60" cy="14" r="3.2"/>
+    <circle cx="38" cy="20" r="2.6"/>
+    <circle cx="82" cy="20" r="2.6"/>
+    <path d="M33 40 L30 24 L44 33 L60 19 L76 33 L90 24 L87 40 Z"/>
+    <rect x="34" y="41" width="52" height="6.5" rx="2"/>
+    <circle cx="46" cy="44.2" r="1.5" fill="#F7F1E4"/>
+    <circle cx="60" cy="44.2" r="1.7" fill="#F7F1E4"/>
+    <circle cx="74" cy="44.2" r="1.5" fill="#F7F1E4"/>
+  </g>
+  <!-- Oval ring -->
+  <ellipse cx="60" cy="80" rx="42" ry="30" stroke="#C6A15B" stroke-width="7" fill="none"/>
+  <!-- Inner grey swoosh + gold accent (stylised comet) -->
+  <path d="M28 92 C40 74 66 70 86 80 C66 74 44 80 34 96 Z" fill="#B7BCC0"/>
+  <path d="M31 96 C42 82 62 78 80 86 C62 82 46 86 37 99 Z" fill="#C6A15B"/>
+</svg>

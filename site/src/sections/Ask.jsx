@@ -76,17 +76,35 @@ export function Closing() {
         </Reveal>
       </div>
       <footer className="relative border-t border-pine-800">
-        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12 py-8 flex flex-col sm:flex-row items-center justify-between gap-5">
-          <span className="inline-grid place-items-center rounded-lg bg-paper px-4 py-3 shadow-sm">
-            <img
-              src={`${import.meta.env.BASE_URL}logo-full.webp`}
-              alt="Supraja Hospitals — A Unit of Dhanturi Hospitals Pvt. Ltd."
-              className="h-11 sm:h-12 w-auto block"
-              width="260"
-              height="107"
-            />
-          </span>
-          <span className="text-xs text-mist-300 tracking-wide text-center sm:text-right">{meta.dateline}</span>
+        <div className="mx-auto max-w-[1200px] px-5 sm:px-8 lg:px-12 py-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="flex items-center gap-5 sm:gap-7">
+            {/* Supraja Hospitals */}
+            <span className="inline-grid place-items-center rounded-lg bg-paper px-4 py-3 shadow-sm">
+              <img
+                src={`${import.meta.env.BASE_URL}logo-full.webp`}
+                alt="Supraja Hospitals — A Unit of Dhanturi Hospitals Pvt. Ltd."
+                className="h-11 sm:h-12 w-auto block"
+                width="260"
+                height="107"
+              />
+            </span>
+            <span className="hidden sm:block h-10 w-px bg-pine-800" aria-hidden="true" />
+            {/* Dhanturi Group */}
+            <span className="flex items-center gap-3">
+              <img
+                src={`${import.meta.env.BASE_URL}dhanturi-mark.svg`}
+                alt="Dhanturi Group"
+                className="h-11 sm:h-12 w-auto block"
+                width="48"
+                height="48"
+              />
+              <span className="leading-none">
+                <span className="block font-display font-semibold text-gold text-xl tracking-wide">DHANTURI</span>
+                <span className="block text-[10px] tracking-[0.35em] text-mist-300 mt-1">GROUP</span>
+              </span>
+            </span>
+          </div>
+          <span className="text-xs text-mist-300 tracking-wide text-center md:text-right">{meta.dateline}</span>
         </div>
       </footer>
     </section>
