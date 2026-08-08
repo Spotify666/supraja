@@ -88,21 +88,15 @@ export function Closing() {
                 height="107"
               />
             </span>
-            <span className="hidden sm:block h-10 w-px bg-pine-800" aria-hidden="true" />
-            {/* Dhanturi Group */}
-            <span className="flex items-center gap-3">
-              <img
-                src={`${import.meta.env.BASE_URL}dhanturi-mark.svg`}
-                alt="Dhanturi Group"
-                className="h-11 sm:h-12 w-auto block"
-                width="48"
-                height="48"
-              />
-              <span className="leading-none">
-                <span className="block font-display font-semibold text-gold text-xl tracking-wide">DHANTURI</span>
-                <span className="block text-[10px] tracking-[0.35em] text-mist-300 mt-1">GROUP</span>
-              </span>
-            </span>
+            <span className="hidden sm:block h-14 w-px bg-pine-800" aria-hidden="true" />
+            {/* Dhanturi Group — official logo (transparent, sits on the dark footer) */}
+            <img
+              src={`${import.meta.env.BASE_URL}dhanturi-full.png`}
+              alt="Dhanturi Group"
+              className="h-16 sm:h-[4.5rem] w-auto block"
+              width="80"
+              height="72"
+            />
           </div>
           <span className="text-xs text-mist-300 tracking-wide text-center md:text-right">{meta.dateline}</span>
         </div>

@@ -75,12 +75,12 @@ export default function Nav({ sections, onVaultHint }) {
           </span>
           <span className="hidden md:flex items-center gap-2 border-l border-pine-800 pl-3">
             <img
-              src={`${import.meta.env.BASE_URL}dhanturi-mark.svg`}
+              src={`${import.meta.env.BASE_URL}dhanturi-emblem.png`}
               alt=""
               aria-hidden="true"
-              className="h-6 w-auto block"
-              width="24"
-              height="24"
+              className="h-7 w-auto block"
+              width="28"
+              height="32"
             />
             <span className="block text-mist-300 text-[10px] tracking-[0.14em]">A DHANTURI GROUP ENTERPRISE</span>
           </span>
