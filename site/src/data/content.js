@@ -869,3 +869,89 @@ export const geo = {
     { name: 'Middle East', coords: [45.0792, 23.8859] },
   ],
 }
+
+// ---------------------------------------------------------------------------
+// NEW DATA (v2) — provided by the client for the revised structure.
+//   A) India / Hyderabad source markets (2024 FTAs for medical purposes)
+//   B) Africa target market — 2024 FTAs & medical share, plus priority tiers
+//   C) 9-Month Implementation Roadmap (workstreams + milestones)
+// Figures transcribed exactly as supplied.
+// ---------------------------------------------------------------------------
+
+export const indiaSources = {
+  kicker: 'PART ONE · THE INDUSTRY',
+  title: 'Where Do Medical Tourists to India Come From?',
+  lede: 'India received approximately 644,000 foreign tourist arrivals for medical purposes in 2024.',
+  chartLabel: 'Largest source markets — 2024 medical arrivals to India',
+  top: [
+    { country: 'Bangladesh', value: 482336 },
+    { country: 'Iraq', value: 32008 },
+    { country: 'Somalia', value: 11717 },
+    { country: 'Oman', value: 10431 },
+    { country: 'Uzbekistan', value: 8921 },
+  ],
+  others: ['Nigeria', 'Tanzania', 'Ethiopia', 'Kenya', 'Sudan', 'Uganda', 'Nepal', 'Maldives'],
+  othersLabel: 'Other important markets',
+  keyPoint:
+    'Bangladesh is by far India’s largest medical-tourism source market, while the Middle East and Africa are major secondary regions.',
+  conclusions: [
+    { label: 'India', text: 'Largest volume comes from Bangladesh, followed by the Middle East and Africa.' },
+    {
+      label: 'Hyderabad',
+      text: 'The strongest established international-patient markets are Africa and the Middle East, making these the most relevant regions for Supraja’s initial international-patient strategy.',
+    },
+  ],
+}
+
+export const africaMarket = {
+  kicker: 'PART FIVE · TARGET MARKET',
+  title: 'Target Market — Africa',
+  summary:
+    'Africa is a real and established source market for Indian medical tourism, not just a future opportunity. In 2024, African countries showed particularly high proportions of medical-purpose travel to India.',
+  tableTitle: '2024 arrivals to India & medical share, by country',
+  headers: ['Country', '2024 FTAs to India', 'Medical share'],
+  rows: [
+    { country: 'Somalia', ftas: 12320, share: 95.1 },
+    { country: 'South Sudan', ftas: 2466, share: 57.1 },
+    { country: 'Sudan', ftas: 10887, share: 46.6 },
+    { country: 'Rwanda', ftas: 1890, share: 41.9 },
+    { country: 'Sierra Leone', ftas: 731, share: 40.6 },
+    { country: 'Nigeria', ftas: 10059, share: 28.5 },
+    { country: 'Zambia', ftas: 4762, share: 27.9 },
+    { country: 'Tanzania', ftas: 30730, share: 22.1 },
+    { country: 'Ethiopia', ftas: 32391, share: 20.7 },
+    { country: 'Uganda', ftas: 11711, share: 16.2 },
+    { country: 'Kenya', ftas: 52294, share: 16.0 },
+  ],
+  note: 'Important: “Medical share” means the percentage of that country’s visitors to India classified as medical-purpose visitors. It is not the percentage of that country’s population travelling abroad for healthcare.',
+  tiersTitle: 'Practical African target for Supraja — three priority tiers',
+  tiers: [
+    { tier: 'Tier 1', label: 'Start', countries: ['Kenya', 'Tanzania', 'Uganda', 'Ethiopia', 'Nigeria', 'Somalia'] },
+    { tier: 'Tier 2', label: 'Develop', countries: ['Sudan', 'South Sudan', 'Rwanda', 'Zambia', 'Ghana'] },
+    { tier: 'Tier 3', label: 'Later', countries: ['Other African countries based on enquiry / partner data'] },
+  ],
+}
+
+export const roadmap = {
+  kicker: 'PART NINE · TIMELINE',
+  title: 'Medical Tourism Implementation Roadmap',
+  subtitle: '9-Month Roadmap to Build, Launch & Scale International Patient Services',
+  months: 9,
+  workstreams: [
+    { n: 1, name: 'Strategy & Research', focus: 'Market · competitors · specialties', phase: 'Foundation', start: 1, end: 2 },
+    { n: 2, name: 'Business Model & SOPs', focus: 'Patient journey · pricing · workflows', phase: 'Design', start: 2, end: 3 },
+    { n: 3, name: 'Team & Technology', focus: 'IPS team · CRM · digital infrastructure', phase: 'Build', start: 3, end: 5 },
+    { n: 4, name: 'Partner Network', focus: 'Facilitators · doctors · hospitals · insurers', phase: 'Develop', start: 4, end: 6 },
+    { n: 5, name: 'Market Activation', focus: 'Africa · Middle East · digital + B2B', phase: 'Launch', start: 5, end: 7 },
+    { n: 6, name: 'Patient Acquisition', focus: 'Enquiry → opinion → quotation → travel', phase: 'First Patients', start: 6, end: 6, milestone: true },
+    { n: 7, name: 'Measure & Optimise', focus: 'Conversion · CAC · revenue · experience', phase: 'Validate & Optimise', start: 7, end: 9 },
+    { n: 8, name: 'Scale', focus: 'Expand proven markets & channels', phase: 'Scale', start: 8, end: 9 },
+  ],
+  milestones: [
+    { month: 3, title: 'Setup', desc: 'Internal IPS operation ready' },
+    { month: 5, title: 'Launch', desc: 'Target markets activated' },
+    { month: 6, title: 'First Patients', desc: 'Commercial patient pipeline established' },
+    { month: 8, title: 'Validate', desc: 'Model measured and optimised' },
+    { month: 9, title: 'Scale', desc: 'Validated model ready for expansion' },
+  ],
+}

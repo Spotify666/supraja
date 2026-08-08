@@ -35,6 +35,8 @@ import {
 import Ecosystem from './sections/Ecosystem.jsx'
 import Model from './sections/Model.jsx'
 import { KeysToSuccess, TheAsk, Closing } from './sections/Ask.jsx'
+import { IndiaSources, AfricaMarket } from './sections/Markets.jsx'
+import { Roadmap } from './sections/Roadmap.jsx'
 
 const SourceVault = lazy(() => import('./components/SourceVault.jsx'))
 
@@ -43,8 +45,10 @@ const NAV_SECTIONS = [
   { id: 'industry', label: 'The Industry' },
   { id: 'plan', label: 'Our Plan' },
   { id: 'ecosystem', label: 'Ecosystem' },
+  { id: 'africa', label: 'Africa' },
   { id: 'uganda', label: 'Uganda' },
   { id: 'model', label: 'The Model' },
+  { id: 'roadmap', label: 'Roadmap' },
   { id: 'ask', label: 'The Ask' },
 ]
 
@@ -67,6 +71,8 @@ export default function App() {
         <WhatIsMVT />
         <GlobalIndustry />
         <PatientsTravelFor />
+        {/* NEW: where medical tourists to India come from (source markets) */}
+        <IndiaSources />
         <Vocabulary />
         <FivePlayers />
         <PatientJourneySteps />
@@ -85,6 +91,8 @@ export default function App() {
         <RisksKpis />
         {/* Supraja + Dhanturi Hospitality (X-Factor) — doc section 3, placed before Uganda */}
         <Ecosystem />
+        {/* NEW: Target Market — Africa (FTA table, medical share, priority tiers) */}
+        <AfricaMarket />
         {/* Part Three */}
         <PartThree />
         <UgandaMarket />
@@ -99,9 +107,11 @@ export default function App() {
         <InstitutionalWorth />
         <Scenarios />
         <FirstProofPoint />
-        {/* The model, keys, ask, close */}
+        {/* The model, keys, roadmap, ask, close */}
         <Model />
         <KeysToSuccess />
+        {/* NEW: 9-month implementation roadmap (Timeline) */}
+        <Roadmap />
         <TheAsk />
         <Closing />
       </main>
