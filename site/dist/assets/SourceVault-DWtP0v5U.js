@@ -1,4 +1,4 @@
-import{C as e,S as t,_ as n,b as r,g as i,v as a,w as o,x as s,y as c}from"./index-LAf40Qdx.js";var l=o(e(),1),u=`**1. What is Medical Tourism?**
+import{C as e,S as t,_ as n,b as r,g as i,v as a,w as o,x as s,y as c}from"./index-BL9_neeA.js";var l=o(e(),1),u=`**1. What is Medical Tourism?**
 
 **Executive Summary**
 

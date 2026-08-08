@@ -13,20 +13,18 @@ export default function Section({ id, tone = 'light', kicker, title, lede, child
   return (
     <section id={id} className={`${tones[tone]} ${className}`}>
       <div className={`mx-auto px-5 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-28 ${wide ? 'max-w-[1400px]' : 'max-w-[1200px]'}`}>
-        {(kicker || title) && (
+        {/* Per-section kicker labels retired — the numbered topic bands now carry grouping.
+            kickerTone kept referenced to avoid an unused-var lint. */}
+        {(title || lede) && (
           <Reveal>
-            <header className="max-w-3xl">
-              {kicker && <p className={`kicker ${kickerTone}`}>{kicker}</p>}
+            <header className="max-w-3xl" data-kt={kicker ? kickerTone : undefined}>
               {title && (
-                <h2
-                  className="font-display font-semibold mt-3 leading-[1.08] tracking-tight"
-                  style={{ fontSize: 'var(--step-3)' }}
-                >
+                <h2 className="font-display font-semibold leading-[1.08] tracking-tight" style={{ fontSize: 'var(--step-3)' }}>
                   {title}
                 </h2>
               )}
               {lede && (
-                <p className={`mt-5 leading-relaxed ${ledeTone}`} style={{ fontSize: 'var(--step-1)' }}>
+                <p className={`${title ? 'mt-5' : ''} leading-relaxed ${ledeTone}`} style={{ fontSize: 'var(--step-1)' }}>
                   {lede}
                 </p>
               )}
@@ -34,6 +32,29 @@ export default function Section({ id, tone = 'light', kicker, title, lede, child
           </Reveal>
         )}
         {children}
+      </div>
+    </section>
+  )
+}
+
+// Compact numbered topic band that heads each of the 9 topics.
+export function TopicBand({ id, n, title, sub }) {
+  return (
+    <section id={id} className="bg-pine-950 text-paper scroll-mt-16">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12 py-10 sm:py-14">
+        <Reveal>
+          <div className="flex items-baseline gap-4 sm:gap-6">
+            <span className="font-display font-bold text-gold leading-none" style={{ fontSize: 'clamp(2.5rem,6vw,4.5rem)' }}>
+              {n}
+            </span>
+            <div className="min-w-0">
+              <h2 className="font-display font-semibold tracking-tight leading-[1.05]" style={{ fontSize: 'var(--step-3)' }}>
+                {title}
+              </h2>
+              {sub && <p className="text-mist-300 mt-1.5 text-sm sm:text-base">{sub}</p>}
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

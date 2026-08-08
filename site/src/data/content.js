@@ -68,7 +68,7 @@ export const executiveSummary = {
 // ---------------------------------------------------------------------------
 
 export const whatIsMVT = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'What Is Medical Tourism, Precisely?',
   termLine: 'Medical Tourism (also “medical travel,” “health tourism,” or “medical value travel / MVT”)',
   definition:
@@ -91,7 +91,7 @@ export const whatIsMVT = {
 }
 
 export const globalIndustry = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'A $31 Billion Global Industry, With Distinct National Specialities',
   destinations: [
     { name: 'Turkey', knownFor: 'Dental · hair transplant · cosmetic', savings: '50–75% lower', coords: [35.24, 38.96] },
@@ -110,7 +110,7 @@ export const globalIndustry = {
 }
 
 export const whatPatientsTravelFor = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'What Patients Actually Travel For',
   chartLabel: 'Share of global medical tourism cases',
   chart: [
@@ -130,7 +130,7 @@ export const whatPatientsTravelFor = {
 }
 
 export const vocabulary = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: "The Vocabulary You'll Hear in Every Conversation From Here",
   terms: [
     {
@@ -161,7 +161,7 @@ export const vocabulary = {
 }
 
 export const fivePlayers = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'Five Players Make This Industry Work',
   players: [
     {
@@ -200,7 +200,7 @@ export const fivePlayers = {
 }
 
 export const patientJourney = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'The Technicalities: How a Patient Actually Moves Through the System',
   steps: [
     { n: 1, title: 'Inquiry & Records', desc: 'Patient reports received; remote specialist review', icon: 'file' },
@@ -213,7 +213,7 @@ export const patientJourney = {
 }
 
 export const accreditation = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'Accreditation: The Trust Signal That Makes Everything Else Possible',
   nabh: {
     name: 'NABH',
@@ -236,7 +236,7 @@ export const accreditation = {
 }
 
 export const permissions = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'Permissions: What It Legally Takes to Treat a Foreign Patient',
   hospitalSide: {
     title: 'Hospital-Side Permissions',
@@ -261,7 +261,7 @@ export const permissions = {
 }
 
 export const competitiveField = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'The Competitive Field: Real Numbers, Not Estimates',
   nationalTitle: 'NATIONAL GIANTS (FY25 FIGURES)',
   nationalHeaders: ['Chain', 'Footprint', 'Scale'],
@@ -282,7 +282,7 @@ export const competitiveField = {
 }
 
 export const industryFinancials = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'Industry Financials: What This Business Actually Earns',
   packagesTitle: 'TYPICAL PACKAGE PRICING BY SPECIALTY',
   packages: [
@@ -308,7 +308,7 @@ export const industryFinancials = {
 }
 
 export const howBusinessesScale = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'How Medical Tourism Businesses Scale: Corridor by Corridor',
   patternTitle: 'THE PATTERN, GENERALISED',
   pattern: [
@@ -342,7 +342,7 @@ export const partTwoDivider = {
 }
 
 export const methodology = {
-  kicker: 'PART TWO · OUR PLAN OF ACTION',
+  kicker: 'OUR PLAN OF ACTION',
   title: 'One Methodology, Repeatable in Any Corridor We Choose',
   intro: 'The same four-phase sequence, applied to whichever corridor we prioritise:',
   phases: [
@@ -372,7 +372,7 @@ export const methodology = {
 }
 
 export const timeline36 = {
-  kicker: 'PART TWO · OUR PLAN OF ACTION',
+  kicker: 'OUR PLAN OF ACTION',
   title: 'A Disciplined, 36-Month Build',
   rows: [
     { months: 'Months 0–3', phase: 'Phase 0 — Foundations', desc: 'NABH engagement begins; IPD ownership assigned; pricing drafted', start: 0, end: 3 },
@@ -384,7 +384,7 @@ export const timeline36 = {
 }
 
 export const priceOfCredibility = {
-  kicker: 'PART TWO · OUR PLAN OF ACTION',
+  kicker: 'OUR PLAN OF ACTION',
   title: 'The Price of Credibility: Time and Capital',
   steps: [
     { n: 1, title: 'Gap Analysis', time: '1–2 months' },
@@ -403,7 +403,7 @@ export const priceOfCredibility = {
 }
 
 export const goToMarket = {
-  kicker: 'PART TWO · OUR PLAN OF ACTION',
+  kicker: 'OUR PLAN OF ACTION',
   title: 'Go-To-Market: Two Channel Types, One Built to Outlast the Other',
   facilitator: {
     title: 'Private Facilitator Channel',
@@ -426,7 +426,7 @@ export const goToMarket = {
 }
 
 export const fiveRoles = {
-  kicker: 'PART TWO · OUR PLAN OF ACTION',
+  kicker: 'OUR PLAN OF ACTION',
   title: 'Five Roles, Lean From Day One, Own the Whole Patient Experience',
   roles: [
     { title: 'Case Intake & Triage Coordinator', desc: 'Receives inquiries, routes to specialists, issues cost estimates', icon: 'users' },
@@ -439,7 +439,7 @@ export const fiveRoles = {
 }
 
 export const risksKpis = {
-  kicker: 'PART TWO · OUR PLAN OF ACTION',
+  kicker: 'OUR PLAN OF ACTION',
   title: "What Could Go Wrong, and How We'll Know",
   risksTitle: 'KEY RISKS & MITIGATIONS',
   risks: [
@@ -469,7 +469,7 @@ export const partThreeDivider = {
 }
 
 export const ugandaMarket = {
-  kicker: 'PART THREE · UGANDA — MARKET OVERVIEW',
+  kicker: 'UGANDA — MARKET OVERVIEW',
   title: "46 Million People, a System That Can't Keep Up",
   stats: [
     { value: '~46M', desc: 'Population, East Africa' },
@@ -487,7 +487,7 @@ export const ugandaMarket = {
 }
 
 export const ugandaHealth = {
-  kicker: 'PART THREE · UGANDA — MARKET OVERVIEW',
+  kicker: 'UGANDA — MARKET OVERVIEW',
   title: "Uganda's Healthcare System: Structure and the Gap We'd Be Filling",
   structureTitle: 'SYSTEM STRUCTURE',
   structure: [
@@ -506,7 +506,7 @@ export const ugandaHealth = {
 }
 
 export const ugandaPay = {
-  kicker: 'PART THREE · UGANDA — MARKET OVERVIEW',
+  kicker: 'UGANDA — MARKET OVERVIEW',
   title: 'How Ugandans Actually Pay for Healthcare Today',
   oopValue: '38–42%',
   oopDesc:
@@ -524,7 +524,7 @@ export const ugandaPay = {
 }
 
 export const corridorExists = {
-  kicker: 'PART THREE · UGANDA — MARKET OVERVIEW',
+  kicker: 'UGANDA — MARKET OVERVIEW',
   title: "The India–Uganda Corridor Already Exists — We Didn't Invent It",
   proofs: [
     '2009 — India funds a telemedicine centre at Mulago National Referral Hospital, linking it to 11 partner hospitals in India.',
@@ -536,7 +536,7 @@ export const corridorExists = {
 }
 
 export const logistics = {
-  kicker: 'PART THREE · UGANDA — MARKET OVERVIEW',
+  kicker: 'UGANDA — MARKET OVERVIEW',
   title: 'The Logistics Are Solvable: Politics, Connectivity, and Visas',
   cols: [
     {
@@ -570,7 +570,7 @@ export const logistics = {
 }
 
 export const marketProven = {
-  kicker: 'PART THREE · UGANDA — MARKET OVERVIEW',
+  kicker: 'UGANDA — MARKET OVERVIEW',
   title: 'The Market Is Already Proven — By Everyone Except Us',
   intro: 'Objective evidence the demand is real — and a map of the field before we discuss our own position in it.',
   cols: [
@@ -590,7 +590,7 @@ export const marketProven = {
 }
 
 export const ourAdvantage = {
-  kicker: 'PART THREE · OUR ADVANTAGE',
+  kicker: 'OUR ADVANTAGE',
   title: "Here's What We Bring That Nobody Else in This Field Has",
   assets: [
     {
@@ -614,7 +614,7 @@ export const ourAdvantage = {
 }
 
 export const businessCase = {
-  kicker: 'PART THREE · OUR ADVANTAGE',
+  kicker: 'OUR ADVANTAGE',
   title: 'The Business Case, In Four Numbers',
   stats: [
     { value: '₹1.4 Cr', desc: 'Year-0 investment required', icon: 'money' },
@@ -626,7 +626,7 @@ export const businessCase = {
 }
 
 export const compounding = {
-  kicker: 'PART THREE · OUR ADVANTAGE',
+  kicker: 'OUR ADVANTAGE',
   title: 'From Investment to Compounding Returns',
   series: [
     { year: 'Year 1', revenue: 2.04, ebitda: -0.2 },
@@ -637,7 +637,7 @@ export const compounding = {
 }
 
 export const institutionalWorth = {
-  kicker: 'PART THREE · OUR ADVANTAGE',
+  kicker: 'OUR ADVANTAGE',
   title: 'Why the Institutional Channel Is Worth Building Patiently',
   chart: [
     { channel: 'Facilitator-Sourced', value: 1.96 },
@@ -652,7 +652,7 @@ export const institutionalWorth = {
 }
 
 export const scenarios = {
-  kicker: 'PART THREE · OUR ADVANTAGE',
+  kicker: 'OUR ADVANTAGE',
   title: 'Resilient Even in the Conservative Case',
   chart: [
     { scenario: 'Conservative', value: 0.19 },
@@ -669,7 +669,7 @@ export const scenarios = {
 }
 
 export const firstProofPoint = {
-  kicker: 'PART THREE · OUR ADVANTAGE',
+  kicker: 'OUR ADVANTAGE',
   title: 'Uganda Is the First Proof Point, Not the Last',
   intro:
     'Once the Uganda corridor is proven, the same four-phase playbook from Part Two replicates — not reinvents — across adjacent markets.',
@@ -879,7 +879,7 @@ export const geo = {
 // ---------------------------------------------------------------------------
 
 export const indiaSources = {
-  kicker: 'PART ONE · THE INDUSTRY',
+  kicker: 'THE INDUSTRY',
   title: 'Where Do Medical Tourists to India Come From?',
   lede: 'India received approximately 644,000 foreign tourist arrivals for medical purposes in 2024.',
   chartLabel: 'Largest source markets — 2024 medical arrivals to India',
@@ -904,7 +904,7 @@ export const indiaSources = {
 }
 
 export const africaMarket = {
-  kicker: 'PART FIVE · TARGET MARKET',
+  kicker: 'TARGET MARKET',
   title: 'Target Market — Africa',
   summary:
     'Africa is a real and established source market for Indian medical tourism, not just a future opportunity. In 2024, African countries showed particularly high proportions of medical-purpose travel to India.',
@@ -933,7 +933,7 @@ export const africaMarket = {
 }
 
 export const roadmap = {
-  kicker: 'PART NINE · TIMELINE',
+  kicker: 'TIMELINE',
   title: 'Medical Tourism Implementation Roadmap',
   subtitle: '9-Month Roadmap to Build, Launch & Scale International Patient Services',
   months: 9,

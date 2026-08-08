@@ -62,7 +62,7 @@ export function AfricaMarket() {
   const d = africaMarket
   const maxFtas = Math.max(...d.rows.map((r) => r.ftas))
   return (
-    <Section id="africa" tone="surface" kicker={d.kicker} title={d.title} lede={d.summary} wide>
+    <Section id="africa" tone="surface" lede={d.summary} wide>
       <div className="mt-10 grid lg:grid-cols-5 gap-6 lg:gap-10 items-start [&>*]:min-w-0">
         {/* The table is the star — always visible */}
         <Reveal className="lg:col-span-3">
