@@ -25,6 +25,7 @@ import Model from './sections/Model.jsx'
 import { TheAsk, Closing } from './sections/Ask.jsx'
 import { IndiaSources, AfricaMarket } from './sections/Markets.jsx'
 import { Roadmap } from './sections/Roadmap.jsx'
+import { SupplyChainFlow } from './sections/SupplyChainFlow.jsx'
 
 const SourceVault = lazy(() => import('./components/SourceVault.jsx'))
 
@@ -66,6 +67,7 @@ export default function App() {
 
         {/* 2 · SUPPLY CHAIN */}
         <TopicBand id="supply" n="02" title="Supply Chain" sub="How a patient moves through the system, and the channels that bring them" />
+        <SupplyChainFlow />
         <PatientJourneySteps />
         <GoToMarket />
 

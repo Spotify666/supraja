@@ -44,7 +44,7 @@ export function TopicBand({ id, n, title, sub }) {
       <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12 py-10 sm:py-14">
         <Reveal>
           <div className="flex items-baseline gap-4 sm:gap-6">
-            <span className="font-display font-bold text-gold leading-none" style={{ fontSize: 'clamp(2.5rem,6vw,4.5rem)' }}>
+            <span className="font-display font-bold text-gold leading-none" style={{ fontSize: 'clamp(1.9rem,5vw,4.5rem)' }}>
               {n}
             </span>
             <div className="min-w-0">
