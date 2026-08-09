@@ -1,5 +1,5 @@
 import { lazy, Suspense, useState, useCallback } from 'react'
-import { LiteProvider } from './lib/motion.jsx'
+import { LiteProvider, TypeScaleProvider } from './lib/motion.jsx'
 import { TopicBand } from './components/Section.jsx'
 import Nav from './components/Nav.jsx'
 import Hero from './sections/Hero.jsx'
@@ -47,6 +47,7 @@ export default function App() {
   const openVault = useCallback(() => setVaultOpen(true), [])
   return (
     <LiteProvider>
+      <TypeScaleProvider>
       <a
         href="#industry"
         className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-paper focus:text-ink focus:px-4 focus:py-2 focus:rounded-md"
@@ -120,6 +121,7 @@ export default function App() {
           <SourceVault open={vaultOpen} onClose={() => setVaultOpen(false)} />
         </Suspense>
       )}
+      </TypeScaleProvider>
     </LiteProvider>
   )
 }

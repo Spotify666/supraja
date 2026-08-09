@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useSpring } from 'framer-motion'
-import { EASE_OUT, useLite } from '../lib/motion.jsx'
+import { EASE_OUT, useLite, useTypeScale } from '../lib/motion.jsx'
 import Icon from './Icon.jsx'
 
 // Sticky, quiet nav. The logo is also the discreet "break-glass" trigger:
@@ -15,6 +15,8 @@ export default function Nav({ sections, onVaultHint }) {
   const progress = useSpring(scrollYProgress, { stiffness: 200, damping: 34, mass: 0.4 })
   const lastEnter = useRef(0)
   const { lite, setLite } = useLite()
+  const { scale, setScale } = useTypeScale()
+  const cycleScale = () => setScale(scale === 's' ? 'm' : scale === 'm' ? 'l' : 's')
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -78,19 +80,19 @@ export default function Nav({ sections, onVaultHint }) {
           <span className="grid place-items-center rounded-md bg-paper px-2 py-1 sm:px-2.5 sm:py-1.5 shadow-sm">
             <img src={`${import.meta.env.BASE_URL}logo-lockup.webp`} alt="Supraja Hospitals" className="h-5 sm:h-6 w-auto block" width="220" height="60" />
           </span>
-          <span className="hidden md:flex items-center gap-2 border-l border-pine-800 pl-3">
+          <span className="hidden xl:flex items-center gap-2 border-l border-pine-800 pl-3">
             <img src={`${import.meta.env.BASE_URL}dhanturi-emblem.png`} alt="" aria-hidden="true" className="h-7 w-auto block" width="28" height="32" />
             <span className="block text-mist-300 text-[10px] tracking-[0.14em]">A DHANTURI GROUP ENTERPRISE</span>
           </span>
         </button>
 
-        {/* Desktop section links */}
-        <nav aria-label="Sections" className="hidden lg:flex items-center gap-1">
+        {/* Desktop section links — shown from ~960px so phone "desktop mode" gets the inline bar */}
+        <nav aria-label="Sections" className="hidden min-[960px]:flex items-center gap-0.5">
           {sections.map((s) => (
             <a
               key={s.id}
               href={`#${s.id}`}
-              className={`focus-ring px-3 py-1.5 rounded-md text-[13px] font-medium transition-colors duration-200 ${
+              className={`focus-ring px-2.5 py-1.5 rounded-md text-[12.5px] font-medium whitespace-nowrap transition-colors duration-200 ${
                 active === s.id ? 'text-paper bg-pine-800' : 'text-mist-300 hover:text-paper'
               }`}
             >
@@ -100,6 +102,24 @@ export default function Nav({ sections, onVaultHint }) {
         </nav>
 
         <div className="flex items-center gap-1">
+          {/* Text size S / M / L */}
+          <div className="flex items-center rounded-md bg-pine-900/60 p-0.5" role="group" aria-label="Text size">
+            {['s', 'm', 'l'].map((sz) => (
+              <button
+                key={sz}
+                type="button"
+                onClick={() => setScale(sz)}
+                aria-pressed={scale === sz}
+                title={`Text size: ${sz === 's' ? 'Small' : sz === 'm' ? 'Medium' : 'Large'}`}
+                className={`focus-ring w-6 h-7 rounded font-display leading-none transition-colors ${
+                  sz === 's' ? 'text-[11px]' : sz === 'm' ? 'text-[13px]' : 'text-[15px]'
+                } ${scale === sz ? 'bg-pine-800 text-gold' : 'text-mist-300 hover:text-paper'}`}
+              >
+                A
+              </button>
+            ))}
+          </div>
+
           <button
             type="button"
             onClick={() => setLite(!lite)}
@@ -113,11 +133,11 @@ export default function Nav({ sections, onVaultHint }) {
             <Icon name={lite ? 'motionOff' : 'motion'} size={18} />
           </button>
 
-          {/* Mobile / tablet menu button */}
+          {/* Phone / small-tablet menu button */}
           <button
             type="button"
             onClick={() => setMenuOpen((o) => !o)}
-            className="focus-ring lg:hidden grid place-items-center w-9 h-9 rounded-md text-paper hover:bg-pine-800 transition-colors"
+            className="focus-ring min-[960px]:hidden grid place-items-center w-9 h-9 rounded-md text-paper hover:bg-pine-800 transition-colors"
             aria-expanded={menuOpen}
             aria-label={menuOpen ? 'Close menu' : 'Open sections menu'}
           >
@@ -131,7 +151,7 @@ export default function Nav({ sections, onVaultHint }) {
         {menuOpen && (
           <motion.nav
             aria-label="Sections"
-            className="lg:hidden overflow-hidden border-t border-pine-800 bg-pine-950/98 backdrop-blur-md"
+            className="min-[960px]:hidden overflow-hidden border-t border-pine-800 bg-pine-950/98 backdrop-blur-md"
             initial={lite ? false : { height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={lite ? undefined : { height: 0, opacity: 0 }}

@@ -3,10 +3,10 @@ import Icon from '../components/Icon.jsx'
 import { Reveal, Stagger, StaggerItem } from '../lib/motion.jsx'
 import { supplyChain as d } from '../data/content.js'
 
-function Item({ icon, title, desc }) {
+function Item({ icon, title, desc, gold }) {
   return (
-    <div className="flex gap-3">
-      <span className="shrink-0 grid place-items-center w-8 h-8 rounded-lg bg-mist-100 text-pine-800">
+    <div className="flex gap-3 py-3 first:pt-0 last:pb-0">
+      <span className={`shrink-0 grid place-items-center w-8 h-8 rounded-lg ${gold ? 'bg-gold-tint text-gold-ink' : 'bg-mist-100 text-pine-800'}`}>
         <Icon name={icon} size={16} />
       </span>
       <div className="min-w-0">
@@ -17,41 +17,55 @@ function Item({ icon, title, desc }) {
   )
 }
 
-function Column({ label, items, accent }) {
+// A single Direct/Local column: header pill + item list with dashed dividers.
+function ColumnCard({ label, items, gold }) {
   return (
-    <div className="rounded-2xl border border-line bg-paper p-5 sm:p-6 h-full">
-      <p className={`kicker text-[0.66rem] mb-4 ${accent === 'gold' ? 'text-gold-ink' : 'text-pine-600'}`}>{label}</p>
-      <div className="space-y-4">
-        {items.map((it) => (
-          <Item key={it.title} {...it} />
-        ))}
+    <div className="relative pt-6 flex flex-col items-center">
+      {/* stub connecting up to the branch rail */}
+      <span className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-6 bg-line" aria-hidden="true" />
+      <span
+        className={`mb-3 inline-block rounded-full px-4 py-1.5 text-xs font-semibold tracking-wide ${
+          gold ? 'bg-gold-soft text-gold-ink' : 'bg-mist-200 text-pine-950'
+        }`}
+      >
+        {label}
+      </span>
+      <div className={`w-full rounded-2xl border bg-paper p-5 ${gold ? 'border-gold-soft' : 'border-line'}`}>
+        <div className="divide-y divide-dashed divide-line">
+          {items.map((it) => (
+            <Item key={it.title} {...it} gold={gold} />
+          ))}
+        </div>
       </div>
     </div>
   )
 }
 
-function Group({ group }) {
+// A branch (Channels / Operations): header box + rail splitting to its two columns.
+function Branch({ group }) {
   const gold = group.accent === 'gold'
   return (
-    <div>
-      <div className="flex justify-center">
-        <span
-          className={`inline-flex items-center gap-2.5 rounded-full px-5 py-2.5 font-semibold tracking-wide ${
-            gold ? 'bg-gold text-pine-950' : 'bg-pine-950 text-gold'
-          }`}
-        >
-          <Icon name={group.icon} size={18} />
-          {group.name}
-        </span>
-      </div>
-      {/* connector */}
-      <div className="flex justify-center" aria-hidden="true">
-        <span className={`w-px h-5 ${gold ? 'bg-gold/50' : 'bg-pine-800/40'}`} />
-      </div>
-      <div className="grid sm:grid-cols-2 gap-4 [&>*]:min-w-0">
-        {group.columns.map((c) => (
-          <Column key={c.label} label={c.label} items={c.items} accent={group.accent} />
-        ))}
+    <div className="flex flex-col items-center">
+      {/* stub down from the root rail */}
+      <span className="w-px h-6 bg-line" aria-hidden="true" />
+      <span
+        className={`inline-flex items-center gap-2.5 rounded-xl px-6 py-3 font-semibold tracking-wide text-base shadow-sm ${
+          gold ? 'bg-gold text-pine-950' : 'bg-pine-950 text-gold'
+        }`}
+      >
+        <Icon name={group.icon} size={18} />
+        {group.name}
+      </span>
+
+      {/* branch rail: vertical to a horizontal bar spanning the two columns */}
+      <span className="w-px h-6 bg-line" aria-hidden="true" />
+      <div className="relative w-full">
+        <span className="hidden sm:block absolute top-0 left-1/4 right-1/4 h-px bg-line" aria-hidden="true" />
+        <div className="grid sm:grid-cols-2 gap-5 [&>*]:min-w-0">
+          {group.columns.map((c) => (
+            <ColumnCard key={c.label} label={c.label} items={c.items} gold={gold} />
+          ))}
+        </div>
       </div>
     </div>
   )
@@ -63,28 +77,31 @@ export function SupplyChainFlow() {
       {/* Root */}
       <Reveal>
         <div className="flex flex-col items-center">
-          <div className="rounded-2xl bg-pine-950 text-paper px-6 sm:px-10 py-5 text-center max-w-2xl">
+          <div className="rounded-2xl bg-pine-950 text-paper px-6 sm:px-10 py-5 text-center max-w-2xl shadow-sm">
             <p className="kicker text-gold text-[0.66rem] mb-1.5">International Patient Services</p>
             <p className="font-display font-semibold leading-snug" style={{ fontSize: 'var(--step-1)' }}>
               {d.root}
             </p>
           </div>
-          <span className="w-px h-6 bg-pine-800/40 mt-1" aria-hidden="true" />
         </div>
       </Reveal>
 
-      {/* Two branches */}
-      <Stagger className="grid lg:grid-cols-2 gap-8 lg:gap-10 [&>*]:min-w-0" gap={0.12}>
-        {d.groups.map((g) => (
-          <StaggerItem key={g.name}>
-            <Group group={g} />
-          </StaggerItem>
-        ))}
-      </Stagger>
+      {/* Root rail splitting to the two branches */}
+      <div className="relative mt-0">
+        <span className="block w-px h-6 bg-line mx-auto" aria-hidden="true" />
+        <span className="hidden lg:block absolute top-6 left-1/4 right-1/4 h-px bg-line" aria-hidden="true" />
+        <Stagger className="grid lg:grid-cols-2 gap-10 lg:gap-8 [&>*]:min-w-0" gap={0.12}>
+          {d.groups.map((g) => (
+            <StaggerItem key={g.name}>
+              <Branch group={g} />
+            </StaggerItem>
+          ))}
+        </Stagger>
+      </div>
 
       {/* Patient support services — common base */}
       <Reveal delay={0.1}>
-        <div className="mt-8 rounded-2xl bg-pine-950 text-paper p-6 sm:p-7">
+        <div className="mt-10 rounded-2xl bg-pine-950 text-paper p-6 sm:p-7">
           <p className="kicker text-gold mb-5 text-center">{d.support.title}</p>
           <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-4">
             {d.support.items.map((s) => (

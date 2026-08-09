@@ -20,6 +20,37 @@ export function useLite() {
   return useContext(LiteContext)
 }
 
+// --- Text size (S / M / L) --------------------------------------------------
+// Scales the root font-size, so every rem-based size (body, labels, and the
+// rem part of the fluid heading clamps) scales together. Persisted per browser.
+const SCALES = { s: '90%', m: '100%', l: '112%' }
+const TypeScaleContext = createContext({ scale: 'm', setScale: () => {} })
+
+export function TypeScaleProvider({ children }) {
+  const [scale, setScale] = useState('m')
+
+  useEffect(() => {
+    const saved = typeof localStorage !== 'undefined' && localStorage.getItem('supraja-type')
+    if (saved && SCALES[saved]) setScale(saved)
+  }, [])
+
+  useEffect(() => {
+    document.documentElement.style.fontSize = SCALES[scale] || '100%'
+    try {
+      localStorage.setItem('supraja-type', scale)
+    } catch {
+      /* ignore */
+    }
+  }, [scale])
+
+  const value = useMemo(() => ({ scale, setScale }), [scale])
+  return <TypeScaleContext.Provider value={value}>{children}</TypeScaleContext.Provider>
+}
+
+export function useTypeScale() {
+  return useContext(TypeScaleContext)
+}
+
 export function Reveal({ children, delay = 0, y = 18, className, once = true, amount = 0.25 }) {
   const { lite } = useLite()
   if (lite) return <div className={className}>{children}</div>
