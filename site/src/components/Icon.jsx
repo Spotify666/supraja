@@ -142,6 +142,14 @@ const paths = {
   chevronLeft: <path d="m15 18-6-6 6-6" />,
   chevronRight: <path d="m9 18 6-6-6-6" />,
   menu: <path d="M3 6h18M3 12h18M3 18h18" />,
+  car: (
+    <>
+      <path d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13" />
+      <path d="M4 17h16v-4H4z" />
+      <circle cx="7.5" cy="17.5" r="1.5" />
+      <circle cx="16.5" cy="17.5" r="1.5" />
+    </>
+  ),
   // Equalizer waveform = animation/motion is on
   motion: <path d="M4 9v6M8 6v12M12 8.5v7M16 5v14M20 10v4" />,
   // Flat line = motion is off / reduced

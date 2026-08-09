@@ -955,3 +955,84 @@ export const roadmap = {
     { month: 9, title: 'Scale', desc: 'Validated model ready for expansion' },
   ],
 }
+
+// ---------------------------------------------------------------------------
+// SUPPLY CHAIN flow chart — transcribed verbatim from the client's diagram
+// (IMG-20260809-WA0003.jpg), rebuilt natively in brand colours.
+// ---------------------------------------------------------------------------
+export const supplyChain = {
+  root: 'Medical Tourism / International Patient Services',
+  groups: [
+    {
+      name: 'Channels',
+      icon: 'compass',
+      accent: 'pine',
+      columns: [
+        {
+          label: 'Direct',
+          items: [
+            { icon: 'users', title: 'Direct Relationships', desc: 'Build relationships with doctors, hospitals, communities abroad' },
+            { icon: 'hospital', title: 'Medical Camps', desc: 'Organize and participate in medical camps' },
+            { icon: 'plane', title: 'International Marketing / Travel', desc: 'Hospital team travels internationally for promotion' },
+            { icon: 'building', title: 'Institutional Relationships', desc: 'Tie-ups with institutions, associations, corporates' },
+          ],
+        },
+        {
+          label: 'Local',
+          items: [
+            { icon: 'users', title: 'Channel Partners', desc: 'Work with channel partners / agencies' },
+            { icon: 'handshake', title: 'Facilitators', desc: 'Facilitators help identify and guide patients' },
+            { icon: 'file', title: 'Translators', desc: 'Language support and translation services' },
+            { icon: 'hospital', title: 'Local Hospital Relationships', desc: 'Network with local hospitals and clinics' },
+            { icon: 'users', title: 'Patient Referrals', desc: 'Referrals from facilitators, doctors and partners' },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'Operations',
+      icon: 'gears',
+      accent: 'gold',
+      columns: [
+        {
+          label: 'Direct',
+          items: [
+            { icon: 'plane', title: 'Airport Pickup & Logistics', desc: 'Airport pickup and logistics team arranges transport' },
+            { icon: 'hotel', title: 'Guest House / Accommodation', desc: 'Check-in, stay arrangements and patient comfort' },
+            { icon: 'car', title: 'Hospital Transport', desc: 'Transport from guest house to hospital and back' },
+            { icon: 'stethoscope', title: 'Treatment Coordination', desc: 'Appointments, admission, doctor coordination and treatment scheduling' },
+            { icon: 'heartbeat', title: 'Patient Support', desc: 'Daily assistance, interpreter, medicines, shopping and general care' },
+            { icon: 'file', title: 'Discharge & Follow-up', desc: 'Fit-to-fly, documentation, discharge process and post-treatment follow-up' },
+          ],
+        },
+        {
+          label: 'Local',
+          items: [
+            { icon: 'handshake', title: 'Facilitator Coordination', desc: 'Coordinate with local facilitators / partners' },
+            { icon: 'passport', title: 'Visa Extension', desc: 'Visa extension support (if required)' },
+            { icon: 'plane', title: 'Fit-to-Fly', desc: 'Medical clearance and fit-to-fly certificate' },
+            { icon: 'file', title: 'Documentation', desc: 'All medical and travel documentation support' },
+            { icon: 'users', title: 'Translation Support', desc: 'Language / translation support for patients' },
+            { icon: 'gears', title: 'Other Local Requirements', desc: 'Any other local formalities and support as needed' },
+          ],
+        },
+      ],
+    },
+  ],
+  support: {
+    title: 'Patient Support Services (Common to All)',
+    items: [
+      { icon: 'plane', label: 'Airport Pickup' },
+      { icon: 'hotel', label: 'Accommodation' },
+      { icon: 'car', label: 'Local Transport' },
+      { icon: 'money', label: 'Shopping Assistance' },
+      { icon: 'users', label: 'Interpreter / Translator' },
+      { icon: 'heartbeat', label: 'Medicines' },
+      { icon: 'heartbeat', label: 'General Patient Care' },
+    ],
+  },
+  countries: {
+    title: 'Countries Served (Examples)',
+    list: ['Ethiopia', 'Somalia', 'Sudan', 'South Sudan', 'Chad', 'Tanzania', 'Djibouti', '(and many more…)'],
+  },
+}
