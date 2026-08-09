@@ -142,6 +142,13 @@ const paths = {
   chevronLeft: <path d="m15 18-6-6 6-6" />,
   chevronRight: <path d="m9 18 6-6-6-6" />,
   menu: <path d="M3 6h18M3 12h18M3 18h18" />,
+  // Text-size glyph: an "A" with a vertical resize arrow
+  textSize: (
+    <>
+      <path d="M2.5 18 7 7l4.5 11M4.3 14h5.4" />
+      <path d="M18 8.5v9M15.5 11 18 8.5 20.5 11M15.5 15 18 17.5 20.5 15" />
+    </>
+  ),
   car: (
     <>
       <path d="M5 13l1.5-4.5A2 2 0 0 1 8.4 7h7.2a2 2 0 0 1 1.9 1.5L19 13" />

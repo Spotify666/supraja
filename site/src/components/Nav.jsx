@@ -16,7 +16,8 @@ export default function Nav({ sections, onVaultHint }) {
   const lastEnter = useRef(0)
   const { lite, setLite } = useLite()
   const { scale, setScale } = useTypeScale()
-  const cycleScale = () => setScale(scale === 's' ? 'm' : scale === 'm' ? 'l' : 's')
+  const [sizeOpen, setSizeOpen] = useState(false)
+  const sizeRef = useRef(null)
 
   useEffect(() => {
     const obs = new IntersectionObserver(
@@ -45,6 +46,27 @@ export default function Nav({ sections, onVaultHint }) {
       document.body.style.overflow = ''
     }
   }, [menuOpen])
+
+  // Close the text-size popover on outside click / Escape
+  useEffect(() => {
+    if (!sizeOpen) return
+    const onDown = (e) => {
+      if (sizeRef.current && !sizeRef.current.contains(e.target)) setSizeOpen(false)
+    }
+    const onKey = (e) => e.key === 'Escape' && setSizeOpen(false)
+    document.addEventListener('mousedown', onDown)
+    document.addEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('mousedown', onDown)
+      document.removeEventListener('keydown', onKey)
+    }
+  }, [sizeOpen])
+
+  const SIZES = [
+    { key: 's', label: 'Small' },
+    { key: 'm', label: 'Medium' },
+    { key: 'l', label: 'Large' },
+  ]
 
   function logoKey(e) {
     if (e.key === 'Enter') {
@@ -102,22 +124,59 @@ export default function Nav({ sections, onVaultHint }) {
         </nav>
 
         <div className="flex items-center gap-1">
-          {/* Text size S / M / L */}
-          <div className="flex items-center rounded-md bg-pine-900/60 p-0.5" role="group" aria-label="Text size">
-            {['s', 'm', 'l'].map((sz) => (
-              <button
-                key={sz}
-                type="button"
-                onClick={() => setScale(sz)}
-                aria-pressed={scale === sz}
-                title={`Text size: ${sz === 's' ? 'Small' : sz === 'm' ? 'Medium' : 'Large'}`}
-                className={`focus-ring w-6 h-7 rounded font-display leading-none transition-colors ${
-                  sz === 's' ? 'text-[11px]' : sz === 'm' ? 'text-[13px]' : 'text-[15px]'
-                } ${scale === sz ? 'bg-pine-800 text-gold' : 'text-mist-300 hover:text-paper'}`}
-              >
-                A
-              </button>
-            ))}
+          {/* Text size — icon button opens a small popover to pick S / M / L */}
+          <div className="relative" ref={sizeRef}>
+            <button
+              type="button"
+              onClick={() => setSizeOpen((o) => !o)}
+              className={`focus-ring grid place-items-center w-9 h-9 rounded-md transition-colors hover:bg-pine-800 ${
+                sizeOpen ? 'text-gold bg-pine-800' : 'text-mist-300 hover:text-paper'
+              }`}
+              aria-haspopup="menu"
+              aria-expanded={sizeOpen}
+              aria-label="Text size"
+              title="Text size"
+            >
+              <Icon name="textSize" size={18} />
+            </button>
+            <AnimatePresence>
+              {sizeOpen && (
+                <motion.div
+                  role="menu"
+                  aria-label="Text size"
+                  className="absolute right-0 mt-2 w-36 rounded-xl border border-pine-800 bg-pine-950/98 backdrop-blur-md shadow-xl p-1.5"
+                  initial={lite ? false : { opacity: 0, y: -6, scale: 0.98 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={lite ? undefined : { opacity: 0, y: -6, scale: 0.98, transition: { duration: 0.12 } }}
+                  transition={{ duration: 0.16, ease: EASE_OUT }}
+                >
+                  <p className="px-2.5 py-1 text-[10px] tracking-[0.14em] text-mist-300 uppercase">Text size</p>
+                  {SIZES.map((s) => (
+                    <button
+                      key={s.key}
+                      type="button"
+                      role="menuitemradio"
+                      aria-checked={scale === s.key}
+                      onClick={() => {
+                        setScale(s.key)
+                        setSizeOpen(false)
+                      }}
+                      className={`focus-ring w-full flex items-center justify-between gap-3 rounded-lg px-2.5 py-2 transition-colors ${
+                        scale === s.key ? 'bg-pine-800 text-gold' : 'text-mist-200 hover:bg-pine-900'
+                      }`}
+                    >
+                      <span className="flex items-baseline gap-2">
+                        <span className="font-display" style={{ fontSize: s.key === 's' ? 12 : s.key === 'm' ? 15 : 18 }}>
+                          A
+                        </span>
+                        <span className="text-sm font-medium">{s.label}</span>
+                      </span>
+                      {scale === s.key && <span className="text-gold text-xs" aria-hidden="true">●</span>}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
 
           <button
