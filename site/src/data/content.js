@@ -696,7 +696,7 @@ export const ecosystem = {
   flow: [
     'Patient lands in Hyderabad',
     'Airport Pickup',
-    'Dhanturi Gorup of Hotels',
+    'Dhanturi Group of Hotels',
     'Pre-operative Assessment',
     'Supraja Hospital',
     'Treatment',

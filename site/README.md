@@ -79,9 +79,11 @@ For meetings, the original assets are available without appearing in the nav:
   ₹29.0 Cr 3-yr revenue / ₹6.1 Cr 3-yr EBITDA / break-even Month 22 · working
   document: ₹1.25 Cr / ₹13.00 Cr Year-3 revenue / ₹3.00 Cr Year-3 EBITDA /
   break-even ~2.5–3 years). Neither was altered or merged.
-- Content-lock means source text is reproduced exactly — including the working
-  document's spelling "Dhanturi Gorup of Hotels" in the integrated-model flow.
-  Fix it in the source and re-transcribe if desired.
+- Content-lock means source text is reproduced exactly. The one exception is a
+  plain typo in the working document — "Dhanturi Gorup of Hotels" — corrected to
+  "Dhanturi Group of Hotels" in the integrated-model flow. British-English
+  spellings from the sources (itemised, organisation, optimise, specialities,
+  etc.) are intentional and were preserved.
 - Live cross-checks of suprajahospitals.com and dhanturi.com/brands were
   blocked by this build environment's network policy, so the deck's own theme
   (which already carries the brand) is the colour source of truth, and the

@@ -4,7 +4,7 @@ import { Reveal, Stagger, StaggerItem } from '../lib/motion.jsx'
 import { ecosystem as d } from '../data/content.js'
 
 // Steps of the integrated model that Dhanturi hospitality owns.
-const hotelSteps = new Set(['Dhanturi Gorup of Hotels', 'Recovery Stay at the Hotels', 'Tourism (optional)'])
+const hotelSteps = new Set(['Dhanturi Group of Hotels', 'Recovery Stay at the Hotels', 'Tourism (optional)'])
 const hospitalSteps = new Set(['Pre-operative Assessment', 'Supraja Hospital', 'Treatment', 'Recovery', 'Teleconsultation'])
 
 export default function Ecosystem() {

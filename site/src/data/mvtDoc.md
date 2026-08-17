@@ -254,7 +254,7 @@ Airport Pickup
 
 ↓
 
-Dhanturi Gorup of Hotels
+Dhanturi Group of Hotels
 
 ↓
 
